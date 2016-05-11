@@ -1,0 +1,42 @@
+<%= form_for(@doggy) do |f| %>
+  <% if @doggy.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@doggy.errors.count, "error") %> prohibited this doggy from being saved:</h2>
+
+      <ul>
+      <% @doggy.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :breed %><br>
+    <%= f.text_field :breed %>
+  </div>
+  <div class="field">
+    <%= f.label :age %><br>
+    <%= f.text_field :age %>
+  </div>
+  <div class="field">
+    <%= f.label :temperment %><br>
+    <%= f.text_field :temperment %>
+  </div>
+  <div class="field">
+    <%= f.label :FunFact %><br>
+    <%= f.text_area :FunFact %>
+  </div>
+
+  <div class="field">
+    <%= f.select(:parent_id, @parents.collect {|a| [ a.name, a.id ] }, {:include_blank => 'Please select a parent'}) %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
